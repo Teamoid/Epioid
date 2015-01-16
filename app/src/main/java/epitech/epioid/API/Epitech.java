@@ -11,7 +11,6 @@ import org.apache.http.Header;
 import org.json.JSONObject;
 
 import epitech.epioid.API.Items.EpitechItem;
-import epitech.epioid.API.Items.Information;
 
 /**
  * Created by michelantoine on 14/01/15.
@@ -59,10 +58,10 @@ public class Epitech {
     }
 
     public static void login(String login, String password, EpitechApiCallback callback) {
-        new LoginTask().execute(login, password, callback);
+        LoginHelper.connect(login, password, callback);
     }
 
     public static void getInfos(EpitechApiCallback callback) {
-        new InfosTask().execute(callback);
+        InfosHelper.getInfos(callback);
     }
 }

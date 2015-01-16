@@ -29,21 +29,15 @@ import epitech.epioid.API.EpitechApiCallback;
 /**
  * Created by michelantoine on 14/01/15.
  */
-class LoginTask {
+class LoginHelper {
     public static final String TAG = "LoginTask";
 
     private static final String url = Epitech.URL + "/login";
 
-    public void execute(String login, String password, final EpitechApiCallback callback) {
+    public static void connect(String login, String password, final EpitechApiCallback callback) {
         RequestParams requestParams = new RequestParams();
-
-        try {
-            requestParams.put("login", login);
-            requestParams.put("password", password);
-        } catch (NullPointerException e) {
-            Log.e(TAG, "Missing Parameter");
-            return ;
-        }
+        requestParams.put("login", login);
+        requestParams.put("password", password);
 
         Epitech.client.post(url, requestParams, new JsonHttpResponseHandler() {
             @Override

@@ -6,12 +6,12 @@ import epitech.epioid.API.Items.Information;
 /**
  * Created by michelantoine on 15/01/15.
  */
-class InfosTask {
+class InfosHelper {
     public static final String TAG = "InfosTask";
 
     private static final String url = Epitech.URL + "/infos";
 
-    public void execute(final EpitechApiCallback callback) {
+    public static void getInfos(final EpitechApiCallback callback) {
         RequestParams requestParams = new RequestParams();
         requestParams.put("token", Epitech.getToken());
 

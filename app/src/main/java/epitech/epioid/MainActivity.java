@@ -9,13 +9,12 @@ import android.view.MenuItem;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import epitech.epioid.API.Epitech;
 import epitech.epioid.API.EpitechApiCallback;
-import epitech.epioid.API.Information;
-
+import epitech.epioid.API.Items.EpitechItem;
+import epitech.epioid.API.Items.Information;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -29,11 +28,9 @@ public class MainActivity extends ActionBarActivity {
 
         Epitech.getInfos(new EpitechApiCallback() {
             @Override
-            public void callBack(JSONObject obj) {
+            public void callBack(EpitechItem obj) {
                 try {
-                    ObjectMapper mapper = new ObjectMapper();
-                    mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-                    information = mapper.readValue(obj.toString(), Information.class);
+                    information = (Information)obj;
                     Log.v(TAG, "Filled informations");
                 } catch (Exception e) {
                     Log.e(TAG, e.toString(), e);

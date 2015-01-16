@@ -33,6 +33,7 @@ import java.util.List;
 
 import epitech.epioid.API.Epitech;
 import epitech.epioid.API.EpitechApiCallback;
+import epitech.epioid.API.Items.EpitechItem;
 
 
 /**
@@ -84,7 +85,7 @@ public class LoginActivity extends Activity {
 
         Epitech.login(login, password, new EpitechApiCallback() {
             @Override
-            public void callBack(JSONObject obj) {
+            public void callBack(EpitechItem obj) {
                 showProgress(false);
                 if (Epitech.getToken() != null) {
                     Intent main = new Intent(getApplicationContext(), MainActivity.class);

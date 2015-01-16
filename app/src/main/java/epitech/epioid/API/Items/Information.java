@@ -1,6 +1,4 @@
-package epitech.epioid.API;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+package epitech.epioid.API.Items;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +6,9 @@ import java.util.List;
 /**
  * Created by michelantoine on 15/01/15.
  */
-public class Information {
+public class Information extends EpitechItem {
     public String ip;
-    public Board board = new Board();
+    public Board board = new Board(); //TODO Should not be empty...
     public List<History> history = new ArrayList<>();
     public Info infos = new Info();
     public Current current = new Current();
@@ -19,7 +17,7 @@ public class Information {
         List<Project> projets = new ArrayList<>();
         List<Note> notes = new ArrayList<>();
         List<Susie> susies = new ArrayList<>();
-        List<Activity> activities = new ArrayList<>();
+        List<Activity> activites = new ArrayList<>();
         List<Module> modules = new ArrayList<>();
         List<Stage> stages = new ArrayList<>();
         List<Ticket> tickets = new ArrayList<>();

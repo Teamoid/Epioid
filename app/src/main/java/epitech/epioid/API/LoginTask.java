@@ -54,7 +54,7 @@ class LoginTask {
                 } catch (JSONException e) {
                     Log.e(TAG, "Invalid JSON");
                 }
-                callback.callBack(response);
+                callback.callBack(null);
             }
 
             @Override

@@ -15,11 +15,5 @@ public class Messages extends EpitechItem {
         public User user;
         public String content;
         public String date;
-
-        public static class User {
-            public String picture;
-            public String title;
-            public String url;
-        }
     }
 }

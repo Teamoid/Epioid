@@ -93,13 +93,6 @@ public class Information extends EpitechItem {
         public String id;
         public String visible;
         public String id_activite;
-        public String _class;
-
-        public class User {
-            public String picture;
-            public String title;
-            public String url;
-        }
     }
 
     public static class Info {

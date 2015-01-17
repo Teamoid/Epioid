@@ -49,13 +49,6 @@ public class Planning extends EpitechItem {
         public String past;
         public String module_available;
 
-        private static class User {
-            public String type;
-            public String login;
-            public String title;
-            public String picture;
-        }
-
         private static class Room {
             public String type;
             public String seats;

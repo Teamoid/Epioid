@@ -10,23 +10,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import epitech.epioid.API.Items.EpitechItem;
-import epitech.epioid.API.Items.Planning;
+import epitech.epioid.API.Items.Projects;
 
 /**
  * Created by michelantoine on 17/01/15.
  */
-public class PlanningHelper extends EpitechItem {
-    private static final String url = Epitech.URL + "/planning";
-    private static final String TAG = "PlanningHelper";
+public class ProjectHelper {
+    private static final String TAG = "ProjectHelper";
 
-    public static void getPlanningFor(String start, String end, final EpitechApiCallback callback) {
+    public static void getProjects(final EpitechApiCallback callback) {
         RequestParams requestParams = new RequestParams();
         requestParams.put("token", Epitech.getToken());
-        requestParams.put("start", start);
-        requestParams.put("end", end);
 
-        Epitech.client.post(url, requestParams, new JsonHttpResponseHandler() {
+        Epitech.client.post(Epitech.URL + "/projects", requestParams, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response)
             {
@@ -36,16 +32,16 @@ public class PlanningHelper extends EpitechItem {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response)
             {
-                Planning planning = new Planning();
+                Projects projects = new Projects();
 
                 for (int i = 0; i < response.length(); i++) {
                     try {
-                        planning.items.add((Planning.PlanningItem)Epitech.parseJSON(response.getJSONObject(i), Planning.PlanningItem.class));
+                        projects.items.add((Projects.Project)Epitech.parseJSON(response.getJSONObject(i), Projects.Project.class));
                     } catch (JSONException e) {
                         Log.e(TAG, e.toString(), e);
                     }
+                    callback.callBack(projects);
                 }
-                callback.callBack(planning);
             }
 
             @Override

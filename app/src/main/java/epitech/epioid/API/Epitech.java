@@ -63,7 +63,7 @@ public class Epitech {
     }
 
     public static void getInfos(EpitechApiCallback callback) {
-        InfosHelper.getInfos(callback);
+        InformationHelper.getInfos(callback);
     }
 
     public static void getPlanningFor(String start, String end, EpitechApiCallback callback) {
@@ -91,5 +91,9 @@ public class Epitech {
     //TODO not implemented
     public static void unsubscribeToSusie(String id, EpitechApiCallback callback) {
         SusieHelper.unsubscribeToSuse(id, callback);
+    }
+
+    public static void getProjects(EpitechApiCallback callback) {
+        ProjectHelper.getProjects(callback);
     }
 }

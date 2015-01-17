@@ -1,12 +1,13 @@
 package epitech.epioid.API;
 
 import com.loopj.android.http.RequestParams;
+
 import epitech.epioid.API.Items.Information;
 
 /**
  * Created by michelantoine on 15/01/15.
  */
-class InfosHelper {
+class InformationHelper {
     public static final String TAG = "InfosTask";
 
     private static final String url = Epitech.URL + "/infos";

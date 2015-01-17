@@ -69,4 +69,12 @@ public class Epitech {
     public static void getPlanningFor(String start, String end, EpitechApiCallback callback) {
         PlanningHelper.getPlanningFor(start, end, callback);
     }
+
+    public static void getSusiesFor(String start, String end, String get, EpitechApiCallback callback) {
+        SusieHelper.getSusiesFor(start, end, get, callback);
+    }
+
+    public static void getSusiesFor(String start, String end, EpitechApiCallback callback) {
+        SusieHelper.getSusiesFor(start, end, SusieHelper.Get.ALL, callback);
+    }
 }

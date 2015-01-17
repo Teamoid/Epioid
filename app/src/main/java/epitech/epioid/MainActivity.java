@@ -1,27 +1,24 @@
 package epitech.epioid;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.json.JSONObject;
 
 import epitech.epioid.API.Epitech;
 import epitech.epioid.API.EpitechApiCallback;
 import epitech.epioid.API.Items.EpitechItem;
 import epitech.epioid.API.Items.Information;
 import epitech.epioid.API.Items.Planning;
+import epitech.epioid.API.Items.SusiePlanning;
 
 public class MainActivity extends ActionBarActivity {
 
     private final String TAG = "MainActivity";
     private Information information = new Information();
     private Planning planning = new Planning();
+    private SusiePlanning susiePlanning = new SusiePlanning();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +29,19 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void callBack(EpitechItem obj) {
                 try {
-                    information = (Information)obj;
+                    information = (Information) obj;
                     Log.v(TAG, "Filled informations");
+                } catch (Exception e) {
+                    Log.e(TAG, e.toString(), e);
+                }
+            }
+        });
+        Epitech.getSusiesFor("2015-01-17", "2015-01-25", new EpitechApiCallback() {
+            @Override
+            public void callBack(EpitechItem obj) {
+                try {
+                    susiePlanning = (SusiePlanning) obj;
+                    Log.v(TAG, "Created planning");
                 } catch (Exception e) {
                     Log.e(TAG, e.toString(), e);
                 }

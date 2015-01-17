@@ -1,13 +1,6 @@
 package epitech.epioid.API;
 
-import android.util.Log;
-
-import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-
-import org.apache.http.Header;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import epitech.epioid.API.Items.Project;
 import epitech.epioid.API.Items.ProjectContainer;
@@ -19,31 +12,7 @@ public class ProjectHelper {
     private static final String TAG = "ProjectHelper";
 
     public static void getProjects(final EpitechApiCallback callback) {
-        Epitech.client.get(Epitech.URL + "/projects?token=" + Epitech.getToken(), new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                callback.callBack(null);
-            }
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                ProjectContainer projects = new ProjectContainer();
-
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        projects.items.add((ProjectContainer.Project) Epitech.parseJSON(response.getJSONObject(i), ProjectContainer.Project.class));
-                    } catch (Exception e) {
-                        Log.e(TAG, e.toString(), e);
-                    }
-                }
-                callback.callBack(projects);
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                callback.callBack(null);
-            }
-        });
+        Epitech.client.get(Epitech.URL + "/projects?token=" + Epitech.getToken(), Epitech.getArrayHandler(ProjectContainer.class, ProjectContainer.Project.class, callback));
     }
 
     public static void getProject(String scolaryear, String codemodule, String codeinstance, String codeacti, EpitechApiCallback callback) {

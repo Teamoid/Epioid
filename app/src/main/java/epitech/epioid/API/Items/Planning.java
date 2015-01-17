@@ -6,9 +6,7 @@ import java.util.List;
 /**
  * Created by michelantoine on 16/01/15.
  */
-public class Planning extends EpitechItem {
-    public List<PlanningItem> items = new ArrayList<>();
-
+public class Planning extends EpitechContainer<Planning.PlanningItem> {
     public static class PlanningItem extends EpitechItem {
         public List<User> prof_inst = new ArrayList<>();
         public String title;

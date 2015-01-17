@@ -8,8 +8,11 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.apache.http.Header;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import epitech.epioid.API.Items.EpitechContainer;
 import epitech.epioid.API.Items.EpitechItem;
 
 /**
@@ -31,14 +34,13 @@ public class Epitech {
     static ObjectMapper mapper = new ObjectMapper();
 
     static EpitechItem parseJSON(JSONObject obj, Class toGet) {
-        EpitechItem ret;
+        EpitechItem ret = null;
 
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         try {
             ret = (EpitechItem)mapper.readValue(obj.toString(), toGet);
         } catch (Exception e) {
             Log.e(TAG, e.toString(), e);
-            ret = null;
         }
         return ret;
     }
@@ -49,6 +51,44 @@ public class Epitech {
             public void onSuccess(int statusCode, Header[] headers, JSONObject response)
             {
                 callback.callBack(Epitech.parseJSON(response, klass));
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                callback.callBack(null);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                callback.callBack(null);
+            }
+        });
+    }
+
+    static JsonHttpResponseHandler getArrayHandler(final Class klass, final Class subClass, final EpitechApiCallback callback) {
+        return (new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                callback.callBack(null);
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response)
+            {
+                try {
+                    EpitechContainer ec = (EpitechContainer)klass.getConstructor().newInstance();
+
+                    for (int i = 0; i < response.length(); i++) {
+                        try {
+                            ec.addItem(Epitech.parseJSON(response.getJSONObject(i), subClass));
+                        } catch (JSONException e) {
+                            Log.e(TAG, e.toString(), e);
+                        }
+                    }
+                    callback.callBack(ec);
+                } catch (Exception e) {
+                    callback.callBack(null);
+                }
             }
 
             @Override

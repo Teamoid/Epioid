@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import epitech.epioid.API.Items.Information;
+import epitech.epioid.API.Items.Marks;
 import epitech.epioid.API.Items.Messages;
 
 /**

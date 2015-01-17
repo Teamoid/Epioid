@@ -1,9 +1,7 @@
-package epitech.epioid.API;
+package epitech.epioid.API.Items;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import epitech.epioid.API.Items.EpitechItem;
 
 /**
  * Created by michelantoine on 17/01/15.

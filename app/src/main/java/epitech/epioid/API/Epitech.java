@@ -115,4 +115,8 @@ public class Epitech {
     public static void getMarks(EpitechApiCallback callback) {
         InformationHelper.getMarks(callback);
     }
+
+    public static void getMessages(EpitechApiCallback callback) {
+        InformationHelper.getMessages(callback);
+    }
 }

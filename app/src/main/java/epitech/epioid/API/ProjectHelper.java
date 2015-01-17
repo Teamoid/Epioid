@@ -10,7 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import epitech.epioid.API.Items.Project;
-import epitech.epioid.API.Items.Projects;
+import epitech.epioid.API.Items.ProjectContainer;
 
 /**
  * Created by michelantoine on 17/01/15.
@@ -27,11 +27,11 @@ public class ProjectHelper {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                Projects projects = new Projects();
+                ProjectContainer projects = new ProjectContainer();
 
                 for (int i = 0; i < response.length(); i++) {
                     try {
-                        projects.items.add((Projects.Project) Epitech.parseJSON(response.getJSONObject(i), Projects.Project.class));
+                        projects.items.add((ProjectContainer.Project) Epitech.parseJSON(response.getJSONObject(i), ProjectContainer.Project.class));
                     } catch (Exception e) {
                         Log.e(TAG, e.toString(), e);
                     }

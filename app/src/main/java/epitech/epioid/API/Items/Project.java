@@ -5,8 +5,6 @@ import java.util.List;
 /**
  * Created by michelantoine on 17/01/15.
  */
-
-
 public class Project extends EpitechItem {
     public String scolaryear;
     public String codemodule;

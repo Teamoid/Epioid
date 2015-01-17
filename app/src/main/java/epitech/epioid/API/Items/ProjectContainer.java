@@ -3,7 +3,7 @@ package epitech.epioid.API.Items;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Projects extends EpitechItem {
+public class ProjectContainer extends EpitechItem {
     public List<Project> items = new ArrayList<>();
 
     public static class Project extends EpitechItem {

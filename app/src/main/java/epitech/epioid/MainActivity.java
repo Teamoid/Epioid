@@ -15,11 +15,13 @@ import epitech.epioid.API.Epitech;
 import epitech.epioid.API.EpitechApiCallback;
 import epitech.epioid.API.Items.EpitechItem;
 import epitech.epioid.API.Items.Information;
+import epitech.epioid.API.Items.Planning;
 
 public class MainActivity extends ActionBarActivity {
 
     private final String TAG = "MainActivity";
     private Information information = new Information();
+    private Planning planning = new Planning();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

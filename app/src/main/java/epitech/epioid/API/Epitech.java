@@ -46,7 +46,8 @@ public class Epitech {
     static JsonHttpResponseHandler getHandler(final Class klass, final EpitechApiCallback callback) {
         return (new JsonHttpResponseHandler() {
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response)
+            {
                 callback.callBack(Epitech.parseJSON(response, klass));
             }
 
@@ -63,5 +64,9 @@ public class Epitech {
 
     public static void getInfos(EpitechApiCallback callback) {
         InfosHelper.getInfos(callback);
+    }
+
+    public static void getPlanningFor(String start, String end, EpitechApiCallback callback) {
+        PlanningHelper.getPlanningFor(start, end, callback);
     }
 }

@@ -10,12 +10,17 @@ import epitech.epioid.API.Items.Information;
 class InformationHelper {
     public static final String TAG = "InfosTask";
 
-    private static final String url = Epitech.URL + "/infos";
-
     public static void getInfos(final EpitechApiCallback callback) {
         RequestParams requestParams = new RequestParams();
         requestParams.put("token", Epitech.getToken());
 
-        Epitech.client.post(url, requestParams, Epitech.getHandler(Information.class, callback));
+        Epitech.client.post(Epitech.URL + "/infos", requestParams, Epitech.getHandler(Information.class, callback));
+    }
+
+    public static void getMarks(final EpitechApiCallback callback) {
+        RequestParams requestParams = new RequestParams();
+        requestParams.put("token", Epitech.getToken());
+
+        Epitech.client.get(Epitech.URL + "/marks", requestParams, Epitech.getHandler(Marks.class, callback));
     }
 }

@@ -101,4 +101,18 @@ public class Epitech {
     public static void getProject(String scolaryear, String codemodule, String codeinstance, String codeacti, EpitechApiCallback callback) {
         ProjectHelper.getProject(scolaryear, codemodule, codeinstance, codeacti, callback);
     }
+
+    //TODO not implemented
+    public static void subscribeToProject(String scolaryear, String codemodule, String codeinstance, String codeacti, EpitechApiCallback callback) {
+
+    }
+
+    //TODO not implemented
+    public static void unsubscribeToProject(String scolaryear, String codemodule, String codeinstance, String codeacti, EpitechApiCallback callback) {
+
+    }
+
+    public static void getMarks(EpitechApiCallback callback) {
+        InformationHelper.getMarks(callback);
+    }
 }

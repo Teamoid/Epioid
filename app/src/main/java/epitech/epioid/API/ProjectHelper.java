@@ -56,4 +56,12 @@ public class ProjectHelper {
 
         Epitech.client.get(Epitech.URL + "/project", requestParams, Epitech.getHandler(Project.class, callback));
     }
+
+    public static void subscribeToProject(String scolaryear, String codemodule, String codeinstance, String codeacti, EpitechApiCallback callback) {
+
+    }
+
+    public static void unsubscribeToProject(String scolaryear, String codemodule, String codeinstance, String codeacti, EpitechApiCallback callback) {
+
+    }
 }

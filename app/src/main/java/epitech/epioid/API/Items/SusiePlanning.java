@@ -28,10 +28,10 @@ public class SusiePlanning extends EpitechItem {
         public String title;
         public String registered;
         public String description;
-        public String confirm_owned;
+        public String confirm_owner;
         public String location;
         public String calendar_type;
-        public String id_owned;
+        public String id_owner;
         public String nb_rated;
         public String confirm_maker;
         public String nb_place;

@@ -11,6 +11,7 @@ import epitech.epioid.API.EpitechApiCallback;
 import epitech.epioid.API.Items.EpitechItem;
 import epitech.epioid.API.Items.Information;
 import epitech.epioid.API.Items.Planning;
+import epitech.epioid.API.Items.Susie;
 import epitech.epioid.API.Items.SusiePlanning;
 
 public class MainActivity extends ActionBarActivity {
@@ -42,6 +43,13 @@ public class MainActivity extends ActionBarActivity {
                 try {
                     susiePlanning = (SusiePlanning) obj;
                     Log.v(TAG, "Created planning");
+                    Epitech.getSusieById(susiePlanning.items.get(0).id, new EpitechApiCallback() {
+                        @Override
+                        public void callBack(EpitechItem obj) {
+                            Susie susie = (Susie)obj;
+                            Log.d(TAG, "JM LA BITE " + susie.title);
+                        }
+                    });
                 } catch (Exception e) {
                     Log.e(TAG, e.toString(), e);
                 }

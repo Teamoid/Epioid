@@ -10,13 +10,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import epitech.epioid.API.Items.Susie;
 import epitech.epioid.API.Items.SusiePlanning;
 
 /**
  * Created by michelantoine on 17/01/15.
  */
 public class SusieHelper {
-    private static final String url = Epitech.URL + "/susies";
     private static final String TAG = "SusieHelper";
 
     public static class Get {
@@ -32,7 +32,7 @@ public class SusieHelper {
         requestParams.put("end", end);
         requestParams.put("get", get);
 
-        Epitech.client.post(url, requestParams, new JsonHttpResponseHandler() {
+        Epitech.client.post(Epitech.URL + "/susies", requestParams, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response)
             {
@@ -59,5 +59,21 @@ public class SusieHelper {
                 callback.callBack(null);
             }
         });
+    }
+
+    public static void getSusieById(String id, final EpitechApiCallback callback) {
+        RequestParams requestParams = new RequestParams();
+        requestParams.put("token", Epitech.getToken());
+        requestParams.put("id", id);
+
+        Epitech.client.get(Epitech.URL + "/susie", requestParams, Epitech.getHandler(Susie.class, callback));
+    }
+
+    public static void subscribeToSusie(String id, final EpitechApiCallback callback) {
+
+    }
+
+    public static void unsubscribeToSuse(String id, final EpitechApiCallback callback) {
+
     }
 }

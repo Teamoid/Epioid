@@ -77,4 +77,19 @@ public class Epitech {
     public static void getSusiesFor(String start, String end, EpitechApiCallback callback) {
         SusieHelper.getSusiesFor(start, end, SusieHelper.Get.ALL, callback);
     }
+
+    //TODO doesn't work... Event with curl. Just gets a Susie object filled with null attributes.
+    public static void getSusieById(String id, EpitechApiCallback callback) {
+        SusieHelper.getSusieById(id, callback);
+    }
+
+    //TODO not implemented
+    public static void subscribeToSusie(String id, EpitechApiCallback callback) {
+        SusieHelper.subscribeToSusie(id, callback);
+    }
+
+    //TODO not implemented
+    public static void unsubscribeToSusie(String id, EpitechApiCallback callback) {
+        SusieHelper.unsubscribeToSuse(id, callback);
+    }
 }

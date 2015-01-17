@@ -116,6 +116,7 @@ public class Epitech {
         InformationHelper.getMarks(callback);
     }
 
+    //TODO not tester, webservice is down...
     public static void getMessages(EpitechApiCallback callback) {
         InformationHelper.getMessages(callback);
     }

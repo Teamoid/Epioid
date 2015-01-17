@@ -3,11 +3,13 @@ package epitech.epioid.API;
 import android.util.Log;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import epitech.epioid.API.Items.Project;
 import epitech.epioid.API.Items.Projects;
 
 /**
@@ -42,5 +44,16 @@ public class ProjectHelper {
                 callback.callBack(null);
             }
         });
+    }
+
+    public static void getProject(String scolaryear, String codemodule, String codeinstance, String codeacti, EpitechApiCallback callback) {
+        RequestParams requestParams = new RequestParams();
+        requestParams.put("token", Epitech.getToken());
+        requestParams.put("scolaryear", scolaryear);
+        requestParams.put("codemodule", codemodule);
+        requestParams.put("codeinstance", codeinstance);
+        requestParams.put("codeacti", codeacti);
+
+        Epitech.client.get(Epitech.URL + "/project", requestParams, Epitech.getHandler(Project.class, callback));
     }
 }

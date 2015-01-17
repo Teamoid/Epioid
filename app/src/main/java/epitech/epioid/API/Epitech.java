@@ -96,4 +96,9 @@ public class Epitech {
     public static void getProjects(EpitechApiCallback callback) {
         ProjectHelper.getProjects(callback);
     }
+
+    //TODO Not tested.
+    public static void getProject(String scolaryear, String codemodule, String codeinstance, String codeacti, EpitechApiCallback callback) {
+        ProjectHelper.getProject(scolaryear, codemodule, codeinstance, codeacti, callback);
+    }
 }

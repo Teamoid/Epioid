@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import org.apache.http.Header;
 import org.json.JSONArray;
@@ -96,6 +97,13 @@ public class Epitech {
                 callback.callBack(null);
             }
         });
+    }
+
+    static RequestParams getBaseRequestParams() {
+        RequestParams requestParams = new RequestParams();
+
+        requestParams.put("token", Epitech.getToken());
+        return requestParams;
     }
 
     public static void login(String login, String password, EpitechApiCallback callback) {

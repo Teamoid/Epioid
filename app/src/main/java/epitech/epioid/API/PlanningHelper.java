@@ -9,7 +9,6 @@ import epitech.epioid.API.Items.Planning;
  * Created by michelantoine on 17/01/15.
  */
 public class PlanningHelper extends EpitechItem {
-    private static final String url = Epitech.URL + "/planning";
     private static final String TAG = "PlanningHelper";
 
     public static void getPlanningFor(String start, String end, final EpitechApiCallback callback) {
@@ -18,6 +17,6 @@ public class PlanningHelper extends EpitechItem {
         requestParams.put("start", start);
         requestParams.put("end", end);
 
-        Epitech.client.post(url, requestParams, Epitech.getArrayHandler(Planning.class, Planning.PlanningItem.class, callback));
+        Epitech.client.post(Epitech.URL + "/planning", requestParams, Epitech.getArrayHandler(Planning.class, Planning.PlanningItem.class, callback));
     }
 }

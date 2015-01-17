@@ -18,8 +18,7 @@ public class SusieHelper {
     }
 
     public static void getSusiesFor(String start, String end, String get, final EpitechApiCallback callback) {
-        RequestParams requestParams = new RequestParams();
-        requestParams.put("token", Epitech.getToken());
+        RequestParams requestParams = Epitech.getBaseRequestParams();
         requestParams.put("start", start);
         requestParams.put("end", end);
         requestParams.put("get", get);

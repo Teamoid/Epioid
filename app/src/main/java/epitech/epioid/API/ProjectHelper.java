@@ -12,12 +12,13 @@ public class ProjectHelper {
     private static final String TAG = "ProjectHelper";
 
     public static void getProjects(final EpitechApiCallback callback) {
-        Epitech.client.get(Epitech.URL + "/projects?token=" + Epitech.getToken(), Epitech.getArrayHandler(ProjectContainer.class, ProjectContainer.Project.class, callback));
+        RequestParams requestParams = Epitech.getBaseRequestParams();
+
+        Epitech.client.get(Epitech.URL + "/projects", requestParams, Epitech.getArrayHandler(ProjectContainer.class, ProjectContainer.Project.class, callback));
     }
 
     public static void getProject(String scolaryear, String codemodule, String codeinstance, String codeacti, EpitechApiCallback callback) {
-        RequestParams requestParams = new RequestParams();
-        requestParams.put("token", Epitech.getToken());
+        RequestParams requestParams = Epitech.getBaseRequestParams();
         requestParams.put("scolaryear", scolaryear);
         requestParams.put("codemodule", codemodule);
         requestParams.put("codeinstance", codeinstance);

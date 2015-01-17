@@ -3,7 +3,7 @@ package epitech.epioid.API.Items;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProjectContainer extends EpitechContainer<ProjectContainer.Project> {
+public class ProjectContainer extends EpitechContainer {
     public static class Project extends EpitechItem {
         public String codemodule;
         public String project;

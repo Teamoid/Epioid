@@ -21,7 +21,7 @@
         android:id="@+id/home_fragment_view"
         android:layout_weight="1"
         android:layout_width="fill_parent"
-        android:layout_height="0dp"
+        android:layout_height="200dp"
         tools:layout="@layout/home_view"
         android:layout_gravity="center_vertical" />
 
@@ -56,6 +56,14 @@
         android:text="@string/home_view_susies_header"
         android:layout_gravity="center_horizontal"
         android:gravity="center" />
+
+    <fragment android:name="epitech.epioid.fragments.SusiesFragment"
+        android:id="@+id/susies_fragment_view"
+        android:layout_weight="1"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        tools:layout="@layout/susies_view"
+        android:layout_gravity="center" />
 
 
 </LinearLayout>

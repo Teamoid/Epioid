@@ -85,7 +85,7 @@ public class Information extends EpitechItem {
         }
     }
 
-    private static class History {
+    public static class History {
         public String title;
         public User user = new User();
         public String content;

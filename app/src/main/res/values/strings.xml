@@ -9,4 +9,11 @@
     <string name="home_view_to_come_header">Mes activités du jour</string>
     <string name="home_view_susies_header">Prochaines susie</string>
 
+    <string name="default_login">troll_a</string>
+    <string name="default_semester">6</string>
+    <string name="default_gpa">3.99</string>
+    <string name="default_credits">200</string>
+    <string name="default_promo">2017</string>
+    <string name="default_full_name">Aziz Troll</string>
+
 </resources>

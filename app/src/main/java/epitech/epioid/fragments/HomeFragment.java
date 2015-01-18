@@ -21,11 +21,20 @@ public class HomeFragment extends Fragment {
     private TextView    tv_semester;
     private TextView    tv_credit;
     private TextView    tv_promo;
+    private TextView    tv_history;
     private ImageView   iv_image;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.home_view, container, false);
+    }
+
+    public TextView getTv_history() {
+        return tv_history;
+    }
+
+    public void setTv_history(TextView tv_history) {
+        this.tv_history = tv_history;
     }
 
     public TextView getTv_login() {

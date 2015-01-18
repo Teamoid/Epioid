@@ -3,9 +3,11 @@ package epitech.epioid.activities;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,7 +22,12 @@ import epitech.epioid.API.Items.Information;
 import epitech.epioid.R;
 import epitech.epioid.fragments.HomeFragment;
 
-public class MainActivity extends FragmentActivity {
+import com.squareup.picasso.Picasso;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class MainActivity extends ActionBarActivity {
 
     private final String TAG = "MainActivity";
     private Information information = new Information();
@@ -37,16 +44,31 @@ public class MainActivity extends FragmentActivity {
         mProgressView = findViewById(R.id.main_activity_login_progress);
         mHomeFragmentView = findViewById(R.id.home_view_main_linear_layout);
         mHomeFragment = (HomeFragment)
-                getSupportFragmentManager().findFragmentById(R.id.home_fragment);
+                getSupportFragmentManager().findFragmentById(R.id.home_fragment_view);
         mHomeFragment.setTv_login((TextView) findViewById(R.id.home_view_login));
+        mHomeFragment.setTv_fullname((TextView) findViewById(R.id.home_view_student_full_name));
+        mHomeFragment.setTv_promo((TextView) findViewById(R.id.home_view_student_promo));
+        mHomeFragment.setTv_semester((TextView) findViewById(R.id.home_view_student_full_semester));
+        mHomeFragment.setIv_image((ImageView) findViewById(R.id.home_view_student_photo));
+        mHomeFragment.setTv_history((TextView) findViewById(R.id.home_view_history));
         showProgress(true);
         Epitech.getInfos(new EpitechApiCallback() {
             @Override
             public void callBack(EpitechItem obj) {
                 try {
                     information = (Information) obj;
-                    Log.v(TAG, "Filled informations");
+                    Log.v(TAG, "Image location: " + information.infos.picture);
+
                     mHomeFragment.getTv_login().setText(information.infos.login);
+                    mHomeFragment.getTv_fullname().setText(information.infos.firstname + " " + information.infos.lastname);
+                    mHomeFragment.getTv_promo().setText(information.infos.promo);
+                    mHomeFragment.getTv_semester().setText(information.infos.semester);
+                    if (information.history.get(0).title != null) {
+                        extractLink(information.history.get(0).title);
+                        Log.v(TAG, "Last history: " + information.history.get(0).title);
+                        mHomeFragment.getTv_history().setText(information.history.get(0).title);
+                    }
+                    Picasso.with(getApplicationContext()).load("https://cdn.local.epitech.eu/userprofil/profilview/" + information.infos.login + ".jpg").into(mHomeFragment.getIv_image());
                     showProgress(false);
                 } catch (Exception e) {
                     Log.e(TAG, e.toString(), e);
@@ -77,6 +99,25 @@ public class MainActivity extends FragmentActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public String extractLink(String rawStringContainingHTML)
+    {
+        Pattern pattern = Pattern.compile("<a.*<\\/a>");
+        Matcher matcher = pattern.matcher(rawStringContainingHTML);
+        // check all occurance
+        while (matcher.find()) {
+            Log.v(TAG, "Start index: " + matcher.start());
+            Log.v(TAG, " End index: " + matcher.end() + " ");
+            Log.v(TAG, matcher.group());
+        }
+        return (null);
+    }
+
+    public String toRealLink(String rawHTML)
+    {
+
+        return (null);
     }
 
     /**

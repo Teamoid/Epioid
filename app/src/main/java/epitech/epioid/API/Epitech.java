@@ -164,8 +164,13 @@ public class Epitech {
         InformationHelper.getMarks(callback);
     }
 
-    //TODO not tester, webservice is down...
+    //TODO not tested, webservice is down...
     public static void getMessages(EpitechApiCallback callback) {
         InformationHelper.getMessages(callback);
+    }
+
+    //TODO not tested
+    public static void getAlerts(EpitechApiCallback callback) {
+        InformationHelper.getAlerts(callback);
     }
 }

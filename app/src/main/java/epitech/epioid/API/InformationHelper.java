@@ -2,6 +2,7 @@ package epitech.epioid.API;
 
 import com.loopj.android.http.RequestParams;
 
+import epitech.epioid.API.Items.Alerts;
 import epitech.epioid.API.Items.Information;
 import epitech.epioid.API.Items.Marks;
 import epitech.epioid.API.Items.Messages;
@@ -28,5 +29,11 @@ class InformationHelper {
         RequestParams requestParams = Epitech.getBaseRequestParams();
 
         Epitech.client.get(Epitech.URL + "/marks", requestParams, Epitech.getArrayHandler(Messages.class, Messages.Message.class, callback));
+    }
+
+    public static void getAlerts(final EpitechApiCallback callback) {
+        RequestParams requestParams = Epitech.getBaseRequestParams();
+
+        Epitech.client.get(Epitech.URL + "/alerts", requestParams, Epitech.getArrayHandler(Alerts.class, Alerts.Alert.class, callback));
     }
 }

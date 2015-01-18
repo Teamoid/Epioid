@@ -35,7 +35,11 @@ class LoginHelper {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 Epitech.setToken(null);
-                Log.i(TAG, "Bad credentials : " + errorResponse.toString());
+                if (errorResponse == null) {
+                    Log.i(TAG, "Service may be down");
+                } else {
+                    Log.i(TAG, "Bad credentials");
+                }
                 callback.callBack(null);
             }
         });

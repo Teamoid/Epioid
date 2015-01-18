@@ -16,7 +16,8 @@ class LoginHelper {
     public static final String TAG = "LoginTask";
 
     public static void connect(String login, String password, final EpitechApiCallback callback) {
-        RequestParams requestParams = Epitech.getBaseRequestParams();
+        RequestParams requestParams = new RequestParams();
+        requestParams.put("login", login);
         requestParams.put("password", password);
 
         Epitech.client.post(Epitech.URL + "/login", requestParams, new JsonHttpResponseHandler() {
@@ -34,7 +35,7 @@ class LoginHelper {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 Epitech.setToken(null);
-                Log.i(TAG, "Bad credentials");
+                Log.i(TAG, "Bad credentials : " + errorResponse.toString());
                 callback.callBack(null);
             }
         });

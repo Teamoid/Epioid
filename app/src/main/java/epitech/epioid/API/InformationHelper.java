@@ -21,7 +21,7 @@ class InformationHelper {
     public static void getMarks(final EpitechApiCallback callback) {
         RequestParams requestParams = Epitech.getBaseRequestParams();
 
-        Epitech.client.get(Epitech.URL + "/marks", requestParams, Epitech.getHandler(Marks.class, callback));
+        Epitech.client.get(Epitech.URL + "/marks", requestParams, Epitech.getArrayHandler(Marks.class, Marks.Mark.class, callback));
     }
 
     public static void getMessages(final EpitechApiCallback callback) {

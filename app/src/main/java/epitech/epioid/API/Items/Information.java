@@ -102,7 +102,7 @@ public class Information extends EpitechItem {
         }
     }
 
-    private static class Info {
+    public static class Info {
         public String id;
         public String login;
         public String title;

@@ -164,7 +164,6 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Medium Text"
         android:id="@+id/home_view_history"
-        android:autoLink="all"
         android:layout_gravity="center_horizontal" />
 
 </LinearLayout>

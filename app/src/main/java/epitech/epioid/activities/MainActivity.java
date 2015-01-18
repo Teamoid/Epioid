@@ -8,6 +8,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -63,11 +65,8 @@ public class MainActivity extends ActionBarActivity {
                     mHomeFragment.getTv_fullname().setText(information.infos.firstname + " " + information.infos.lastname);
                     mHomeFragment.getTv_promo().setText(information.infos.promo);
                     mHomeFragment.getTv_semester().setText(information.infos.semester);
-                    if (information.history.get(0).title != null) {
-                        extractLink(information.history.get(0).title);
-                        Log.v(TAG, "Last history: " + information.history.get(0).title);
-                        mHomeFragment.getTv_history().setText(information.history.get(0).title);
-                    }
+                    mHomeFragment.getTv_history().setText(Html.fromHtml(information.history.get(0).title.replaceFirst("=\"/", "=\"https://intra.epitech.eu/")));
+                    mHomeFragment.getTv_history().setMovementMethod(LinkMovementMethod.getInstance());
                     Picasso.with(getApplicationContext()).load("https://cdn.local.epitech.eu/userprofil/profilview/" + information.infos.login + ".jpg").into(mHomeFragment.getIv_image());
                     showProgress(false);
                 } catch (Exception e) {
@@ -103,21 +102,22 @@ public class MainActivity extends ActionBarActivity {
 
     public String extractLink(String rawStringContainingHTML)
     {
-        Pattern pattern = Pattern.compile("<a.*<\\/a>");
+        Pattern pattern = Pattern.compile("href=\"(.*?)\"");
         Matcher matcher = pattern.matcher(rawStringContainingHTML);
-        // check all occurance
         while (matcher.find()) {
-            Log.v(TAG, "Start index: " + matcher.start());
-            Log.v(TAG, " End index: " + matcher.end() + " ");
-            Log.v(TAG, matcher.group());
+            Log.v(TAG, "Group: " + matcher.group(1));
+            if (matcher.group(1) != null && matcher.group(1).startsWith("/")) {
+                return (matcher.group(1));
+            }
         }
         return (null);
     }
 
-    public String toRealLink(String rawHTML)
+    public String replaceLink(String rawString, String link)
     {
-
-        return (null);
+        Pattern pattern = Pattern.compile("<a.*<\\/a>");
+        Matcher matcher = pattern.matcher(rawString);
+        return (matcher.replaceAll(link));
     }
 
     /**

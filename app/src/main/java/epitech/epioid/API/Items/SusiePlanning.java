@@ -1,15 +1,10 @@
 package epitech.epioid.API.Items;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by michelantoine on 17/01/15.
  */
 
-public class SusiePlanning extends EpitechItem {
-    public List<SusiePlanningItem> items = new ArrayList<>();
-
+public class SusiePlanning extends EpitechContainer {
     public static class SusiePlanningItem extends EpitechItem {
         public String type;
         public String id;

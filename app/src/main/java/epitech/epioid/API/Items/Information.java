@@ -13,7 +13,7 @@ public class Information extends EpitechItem {
     public Info infos = new Info();
     public Current current = new Current();
 
-    private static class Board {
+    public static class Board {
         List<Project> projets = new ArrayList<>();
         List<Note> notes = new ArrayList<>();
         List<Susie> susies = new ArrayList<>();
@@ -22,7 +22,7 @@ public class Information extends EpitechItem {
         List<Stage> stages = new ArrayList<>();
         List<Ticket> tickets = new ArrayList<>();
 
-        private static class Project {
+        public static class Project {
             public String title;
             public String title_link;
             public String timeline_start;
@@ -36,14 +36,14 @@ public class Information extends EpitechItem {
             public String soutenance_salle;
         }
 
-        private static class Note {
+        public static class Note {
             public String title;
             public String title_link;
             public String note;
             public String noteur;
         }
 
-        private static class Susie {
+        public static class Susie {
             public String title;
             public String creneau_link;
             public String timeline_start;
@@ -55,7 +55,7 @@ public class Information extends EpitechItem {
             public String type;
         }
 
-        private static class Activity {
+        public static class Activity {
             public String title;
             public String module;
             public String module_link;
@@ -67,7 +67,7 @@ public class Information extends EpitechItem {
             public String register_link;
         }
 
-        private static class Module {
+        public static class Module {
             public String title;
             public String title_link;
             public String timeline_start;
@@ -76,11 +76,11 @@ public class Information extends EpitechItem {
             public String date_inscription;
         }
 
-        private static class Stage {
+        public static class Stage {
             // TODO find JSON
         }
 
-        private static class Ticket {
+        public static class Ticket {
             // TODO find JSON
         }
     }
@@ -93,13 +93,6 @@ public class Information extends EpitechItem {
         public String id;
         public String visible;
         public String id_activite;
-        public String _class;
-
-        public class User {
-            public String picture;
-            public String title;
-            public String url;
-        }
     }
 
     public static class Info {
@@ -141,7 +134,7 @@ public class Information extends EpitechItem {
         public String admin;
     }
 
-    private static class Current {
+    public static class Current {
         public String active_log;
         public String credits_min;
         public String credits_norm;

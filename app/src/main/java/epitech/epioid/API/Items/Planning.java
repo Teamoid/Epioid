@@ -6,9 +6,7 @@ import java.util.List;
 /**
  * Created by michelantoine on 16/01/15.
  */
-public class Planning extends EpitechItem {
-    public List<PlanningItem> items = new ArrayList<>();
-
+public class Planning extends EpitechContainer {
     public static class PlanningItem extends EpitechItem {
         public List<User> prof_inst = new ArrayList<>();
         public String title;
@@ -48,13 +46,6 @@ public class Planning extends EpitechItem {
         public String module_registered;
         public String past;
         public String module_available;
-
-        private static class User {
-            public String type;
-            public String login;
-            public String title;
-            public String picture;
-        }
 
         private static class Room {
             public String type;

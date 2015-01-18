@@ -1,18 +1,11 @@
-package epitech.epioid.API;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import epitech.epioid.API.Items.EpitechItem;
+package epitech.epioid.API.Items;
 
 /**
  * Created by michelantoine on 17/01/15.
  */
 
-public class Marks extends EpitechItem {
-    public List<Mark> notes = new ArrayList<>();
-
-    public static class Mark {
+public class Marks extends EpitechContainer {
+    public static class Mark extends EpitechItem {
         public String scolaryear;
         public String codemodule;
         public String titlemodule;

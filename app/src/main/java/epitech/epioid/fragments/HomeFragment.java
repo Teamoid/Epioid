@@ -5,6 +5,7 @@ import epitech.epioid.API.EpitechApiCallback;
 import epitech.epioid.API.Items.EpitechItem;
 import epitech.epioid.API.Items.Information;
 import epitech.epioid.R;
+import epitech.epioid.interfaces.IEpiFragment;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -15,6 +16,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +30,7 @@ import com.squareup.picasso.Picasso;
 /**
  * Created by Ganitzsh on 18/01/2015.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements IEpiFragment {
 
     private Context mContext;
     private Information information = new Information();
@@ -82,6 +84,13 @@ public class HomeFragment extends Fragment {
         });
         return rootView;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("TEST", "Testing da resume");
+    }
+
     /**
      * Shows the progress UI and hides the login form.
      */
@@ -109,5 +118,10 @@ public class HomeFragment extends Fragment {
             pbProgressBar.setVisibility(show ? View.VISIBLE : View.GONE);
             llInnerLayout.setVisibility(show ? View.GONE : View.VISIBLE);
         }
+    }
+
+    @Override
+    public void refresh() {
+
     }
 }

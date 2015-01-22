@@ -32,13 +32,13 @@ public class SusiePlanning extends EpitechContainer {
         public String nb_place;
         public String color;
 
-        private static class Owner {
+        public static class Owner {
             public String picture;
             public String title;
             public String login;
         }
 
-        private static class Maker {
+        public static class Maker {
             public String title;
             public String login;
         }

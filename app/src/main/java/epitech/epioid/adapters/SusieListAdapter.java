@@ -42,7 +42,7 @@ public class SusieListAdapter extends ArrayAdapter<EpitechItem> {
         susieClassName.setText(((SusiePlanning.SusiePlanningItem)values.get(position)).title);
         susieStart.setText(((SusiePlanning.SusiePlanningItem)values.get(position)).start);
         susieEnd.setText(((SusiePlanning.SusiePlanningItem)values.get(position)).end);
-        susieName.setText(((SusiePlanning.SusiePlanningItem)values.get(position)).id_owner);
+        susieName.setText(((SusiePlanning.SusiePlanningItem)values.get(position)).owner.login);
 
         return rowView;
     }

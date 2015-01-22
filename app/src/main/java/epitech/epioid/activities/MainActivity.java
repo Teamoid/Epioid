@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,6 +27,7 @@ import epitech.epioid.R;
 import epitech.epioid.adapters.NavigationDrawerListAdapter;
 import epitech.epioid.fragments.HomeFragment;
 import epitech.epioid.fragments.SusiesListFragment;
+import epitech.epioid.interfaces.IEpiFragment;
 import epitech.epioid.model.NvDrawerItem;
 
 public class MainActivity extends ActionBarActivity {
@@ -39,6 +41,8 @@ public class MainActivity extends ActionBarActivity {
 
     private ProgressBar             mProgressBar;
     private FrameLayout             mFrameLayout;
+
+    private IEpiFragment            mCurrentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,7 +136,13 @@ public class MainActivity extends ActionBarActivity {
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
-        return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case R.id.action_refresh:
+                Log.d("ActionBar", "Refresh clicked!");
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     /**

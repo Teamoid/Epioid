@@ -45,7 +45,7 @@ public class SusieInfoFragment extends Fragment {
         Date begin = null;
         Date end = null;
         SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy à HH:mm");
+        SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy à HH:mm");;
 
         try {
             begin = input.parse(susie.start);

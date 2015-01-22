@@ -17,8 +17,7 @@
     <string name="default_full_name">Aziz Troll</string>
 
     <string name="default_susie_class_name">FUN!</string>
-    <string name="default_susie_start">27/01/2015 14h</string>
-    <string name="default_susie_end">27/01/2015 16h</string>
+    <string name="default_susie_date">27/01/2015 14h</string>
     <string name="default_susie_name">lukass_l</string>
 
 </resources>

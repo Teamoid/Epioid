@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/item_susie_list_table"
-    android:stretchColumns="*">
-
-    <TableRow
-        android:layout_height="fill_parent">
+    android:layout_gravity="center"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:id="@+id/item_susie_list_table">
 
     <TextView
         android:id="@+id/susie_class_name"
@@ -14,29 +15,18 @@
         android:layout_height="wrap_content"
         android:text="@string/default_susie_class_name"
         android:textStyle="bold"
-        android:layout_column="0"/>
+        android:textSize="18dp"/>
 
     <TextView
-        android:id="@+id/susie_start"
+        android:id="@+id/susie_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/default_susie_start"
-        android:layout_column="1"/>
-
-    <TextView
-        android:id="@+id/susie_end"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/default_susie_end"
-        android:layout_column="2"/>
+        android:text="@string/default_susie_date"/>
 
     <TextView
         android:id="@+id/susie_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/default_susie_name"
-        android:layout_column="3"/>
+        android:text="@string/default_susie_name"/>
 
-    </TableRow>
-
-</TableLayout>
+</LinearLayout>

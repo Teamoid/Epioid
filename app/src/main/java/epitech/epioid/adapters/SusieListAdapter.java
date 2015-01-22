@@ -8,6 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import epitech.epioid.API.Items.EpitechItem;
@@ -31,18 +34,32 @@ public class SusieListAdapter extends ArrayAdapter<EpitechItem> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        Date begin = null;
+        Date end = null;
+
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.item_susie_list, parent, false);
         TextView susieClassName = (TextView) rowView.findViewById(R.id.susie_class_name);
-        TextView susieStart = (TextView) rowView.findViewById(R.id.susie_start);
-        TextView susieEnd = (TextView) rowView.findViewById(R.id.susie_end);
+        TextView susieDate = (TextView) rowView.findViewById(R.id.susie_date);
         TextView susieName = (TextView) rowView.findViewById(R.id.susie_name);
 
+        SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy à HH:mm");
+
+        try {
+            begin = input.parse(((SusiePlanning.SusiePlanningItem)values.get(position)).start);
+            end = input.parse(((SusiePlanning.SusiePlanningItem)values.get(position)).end);
+
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         susieClassName.setText(((SusiePlanning.SusiePlanningItem)values.get(position)).title);
-        susieStart.setText(((SusiePlanning.SusiePlanningItem)values.get(position)).start);
-        susieEnd.setText(((SusiePlanning.SusiePlanningItem)values.get(position)).end);
-        susieName.setText(((SusiePlanning.SusiePlanningItem)values.get(position)).owner.login);
+        susieDate.setText("Du " + output.format(begin)
+        + " au " + output.format(end));
+        susieName.setText("Intervenant : " + ((SusiePlanning.SusiePlanningItem)values.get(position)).maker.login);
 
         return rowView;
     }

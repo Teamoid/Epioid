@@ -25,7 +25,7 @@ import java.util.List;
 import epitech.epioid.R;
 import epitech.epioid.adapters.NavigationDrawerListAdapter;
 import epitech.epioid.fragments.HomeFragment;
-import epitech.epioid.fragments.SusiesFragment;
+import epitech.epioid.fragments.SusiesListFragment;
 import epitech.epioid.model.NvDrawerItem;
 
 public class MainActivity extends ActionBarActivity {
@@ -50,7 +50,7 @@ public class MainActivity extends ActionBarActivity {
 
         mDrawerItemList = new ArrayList<>();
         mDrawerItemList.add(new NvDrawerItem(R.drawable.ic_action_person, "Accueil", new HomeFragment()));
-        mDrawerItemList.add(new NvDrawerItem(R.drawable.ic_action_new_event, "Susies", new SusiesFragment()));
+        mDrawerItemList.add(new NvDrawerItem(R.drawable.ic_action_new_event, "Susies", new SusiesListFragment()));
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerListView = (ListView) findViewById(R.id.left_drawer);

@@ -19,5 +19,9 @@
     <string name="default_susie_class_name">FUN!</string>
     <string name="default_susie_date">27/01/2015 14h</string>
     <string name="default_susie_name">lukass_l</string>
+    <string name="default_susie_registered">&#xf00d;</string>
+    <string name="susie_registered">&#xf00c;</string>
+    <string name="susie_basic_registered">Inscrit : </string>
+
 
 </resources>

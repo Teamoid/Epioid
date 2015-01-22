@@ -28,7 +28,7 @@ import epitech.epioid.adapters.SusieListAdapter;
 /**
  * Created by Ganitzsh on 18/01/2015.
  */
-public class SusiesFragment extends Fragment {
+public class SusiesListFragment extends Fragment {
 
     private ListView susieList;
     private Context context;

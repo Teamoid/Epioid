@@ -1,6 +1,8 @@
 package epitech.epioid.adapters;
 
 import android.content.Context;
+import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,15 +39,23 @@ public class SusieListAdapter extends ArrayAdapter<EpitechItem> {
         Date begin = null;
         Date end = null;
 
+        Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/fontawesome-webfont.ttf");
+
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.item_susie_list, parent, false);
         TextView susieClassName = (TextView) rowView.findViewById(R.id.susie_class_name);
         TextView susieDate = (TextView) rowView.findViewById(R.id.susie_date);
         TextView susieName = (TextView) rowView.findViewById(R.id.susie_name);
+        TextView susieRegistered = (TextView) rowView.findViewById(R.id.susie_registered);
+
+        susieRegistered.setTypeface(font);
 
         SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy à HH:mm");
+
+        if (((SusiePlanning.SusiePlanningItem)values.get(position)).event_registered != null)
+            susieRegistered.setText(context.getResources().getString(R.string.susie_registered));
 
         try {
             begin = input.parse(((SusiePlanning.SusiePlanningItem)values.get(position)).start);

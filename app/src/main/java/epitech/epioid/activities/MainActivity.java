@@ -21,11 +21,16 @@ import epitech.epioid.API.Epitech;
 import epitech.epioid.API.EpitechApiCallback;
 import epitech.epioid.API.Items.EpitechItem;
 import epitech.epioid.API.Items.Information;
+import epitech.epioid.API.Items.SusiePlanning;
 import epitech.epioid.R;
 import epitech.epioid.fragments.HomeFragment;
+import epitech.epioid.fragments.SusiesFragment;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -36,12 +41,19 @@ public class MainActivity extends ActionBarActivity {
 
     private HomeFragment    mHomeFragment;
     private View            mHomeFragmentView;
+
+    private SusiesFragment  susiesFragment;
+    private View            susiesFragmentView;
+
     private View            mProgressView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        susiesFragmentView = findViewById(R.id.susie_linear_layout);
+        susiesFragment = (SusiesFragment) getSupportFragmentManager().findFragmentById(R.id.susies_fragment_view);
 
         mProgressView = findViewById(R.id.main_activity_login_progress);
         mHomeFragmentView = findViewById(R.id.home_view_main_linear_layout);
@@ -75,6 +87,10 @@ public class MainActivity extends ActionBarActivity {
                 }
             }
         });
+        Calendar cal = Calendar.getInstance();
+        Log.d("DATE NOW: ", new SimpleDateFormat("yyyy-MM-dd").format(cal.getTime()));
+        cal.add(Calendar.WEEK_OF_MONTH, 1);
+        Log.d("DATE NEXT WEEK: ", new SimpleDateFormat("yyyy-MM-dd").format(cal.getTime()));
     }
 
 

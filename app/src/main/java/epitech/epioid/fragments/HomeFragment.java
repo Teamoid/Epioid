@@ -57,8 +57,9 @@ public class HomeFragment extends Fragment {
         ivPhoto = (ImageView) rootView.findViewById(R.id.home_view_student_photo);
         tvSemester = (TextView) rootView.findViewById(R.id.home_view_student_full_semester);
         tvFullname = (TextView) rootView.findViewById(R.id.home_view_student_full_name);
+        tvPromo = (TextView) rootView.findViewById(R.id.home_view_student_promo);
         tvHistory = (TextView) rootView.findViewById(R.id.home_view_history);
-        llInnerLayout = (LinearLayout) rootView.findViewById(R.id.home_view_main_linear_layout);
+        llInnerLayout = (LinearLayout) rootView.findViewById(R.id.home_view_inner_layout);
         pbProgressBar = (ProgressBar) rootView.findViewById(R.id.home_view_progress);
         showProgress(true);
         Epitech.getInfos(new EpitechApiCallback() {
@@ -66,6 +67,7 @@ public class HomeFragment extends Fragment {
             public void callBack(EpitechItem obj) {
                 try {
                     information = (Information) obj;
+                    tvPromo.setText(information.infos.promo);
                     tvLogin.setText(information.infos.login);
                     tvFullname.setText(information.infos.firstname + " " + information.infos.lastname);
                     tvSemester.setText(information.infos.semester);

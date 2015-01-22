@@ -1,6 +1,10 @@
 package epitech.epioid.activities;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.annotation.TargetApi;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -11,7 +15,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,14 +37,20 @@ public class MainActivity extends ActionBarActivity {
     private ActionBarDrawerToggle   mDrawerToggle;
     private List<NvDrawerItem>      mDrawerItemList;
 
+    private ProgressBar             mProgressBar;
+    private FrameLayout             mFrameLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mProgressBar = (ProgressBar) findViewById(R.id.main_view_progress);
+        mFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
+
         mDrawerItemList = new ArrayList<>();
         mDrawerItemList.add(new NvDrawerItem(R.drawable.ic_action_person, "Accueil", new HomeFragment()));
-        mDrawerItemList.add(new NvDrawerItem(R.drawable.ic_action_person, "Susies", new SusiesFragment()));
+        mDrawerItemList.add(new NvDrawerItem(R.drawable.ic_action_new_event, "Susies", new SusiesFragment()));
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerListView = (ListView) findViewById(R.id.left_drawer);
@@ -69,14 +81,18 @@ public class MainActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         mHomeFragment = new HomeFragment();
+        showProgress(true);
         FragmentManager frgManager = getSupportFragmentManager();
         frgManager.beginTransaction().replace(R.id.content_frame, mHomeFragment).commit();
+        showProgress(false);
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView parent, View view, int position, long id) {
+            showProgress(true);
             selectItem(position);
+            showProgress(false);
         }
     }
 
@@ -117,5 +133,34 @@ public class MainActivity extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Shows the progress UI and hides the login form.
+     */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
+    public void showProgress(final boolean show) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
+            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+            mFrameLayout.setVisibility(show ? View.GONE : View.VISIBLE);
+            mFrameLayout.animate().setDuration(shortAnimTime).alpha(
+                    show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    mFrameLayout.setVisibility(show ? View.GONE : View.VISIBLE);
+                }
+            });
+            mProgressBar.setVisibility(show ? View.VISIBLE : View.GONE);
+            mProgressBar.animate().setDuration(shortAnimTime).alpha(
+                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    mProgressBar.setVisibility(show ? View.VISIBLE : View.GONE);
+                }
+            });
+        } else {
+            mProgressBar.setVisibility(show ? View.VISIBLE : View.GONE);
+            mFrameLayout.setVisibility(show ? View.GONE : View.VISIBLE);
+        }
     }
 }

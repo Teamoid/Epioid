@@ -10,11 +10,17 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import epitech.epioid.R;
+import epitech.epioid.adapters.NavigationDrawerListAdapter;
 import epitech.epioid.fragments.HomeFragment;
+import epitech.epioid.fragments.SusiesFragment;
+import epitech.epioid.model.NvDrawerItem;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -23,16 +29,20 @@ public class MainActivity extends ActionBarActivity {
     private DrawerLayout            mDrawerLayout;
     private ListView                mDrawerListView;
     private ActionBarDrawerToggle   mDrawerToggle;
+    private List<NvDrawerItem>      mDrawerItemList;
 
-    String[] tmp = { "item 1", "item 2" };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mDrawerItemList = new ArrayList<>();
+        mDrawerItemList.add(new NvDrawerItem(R.drawable.ic_action_person, "Accueil", new HomeFragment()));
+        mDrawerItemList.add(new NvDrawerItem(R.drawable.ic_action_person, "Susies", new SusiesFragment()));
+
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerListView = (ListView) findViewById(R.id.left_drawer);
-        mDrawerListView.setAdapter(new ArrayAdapter<>(this, R.layout.drawer_list_item, R.id.drawer_list_item_title, tmp));
+        mDrawerListView.setAdapter(new NavigationDrawerListAdapter(this, mDrawerItemList));
         mDrawerToggle = new ActionBarDrawerToggle(this,
                 mDrawerLayout,
                 null,
@@ -55,11 +65,25 @@ public class MainActivity extends ActionBarActivity {
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerListView.setOnItemClickListener(new DrawerItemClickListener());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         mHomeFragment = new HomeFragment();
         FragmentManager frgManager = getSupportFragmentManager();
         frgManager.beginTransaction().replace(R.id.content_frame, mHomeFragment).commit();
+    }
+
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView parent, View view, int position, long id) {
+            selectItem(position);
+        }
+    }
+
+    private void selectItem(int position) {
+        FragmentManager frgManager = getSupportFragmentManager();
+        frgManager.beginTransaction().replace(R.id.content_frame, mDrawerItemList.get(position).getmFragment()).commit();
+        mDrawerLayout.closeDrawers();
     }
 
     @Override

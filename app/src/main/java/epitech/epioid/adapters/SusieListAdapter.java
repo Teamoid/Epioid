@@ -74,4 +74,8 @@ public class SusieListAdapter extends ArrayAdapter<EpitechItem> {
         return rowView;
     }
 
+    public EpitechItem getItem(int position){
+        return values.get(position);
+    }
+
 }

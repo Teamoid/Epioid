@@ -4,13 +4,17 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -31,6 +35,7 @@ import epitech.epioid.adapters.SusieListAdapter;
 public class SusiesListFragment extends Fragment {
 
     private ListView susieList;
+    private SusieListAdapter adapter;
     private Context context;
 
     private ProgressBar mProgressBar;
@@ -45,17 +50,32 @@ public class SusiesListFragment extends Fragment {
         Calendar nextWeek = Calendar.getInstance();
         nextWeek.add(Calendar.WEEK_OF_MONTH, 1);
         context = this.getActivity();
+        susieList.setOnItemClickListener(new ItemClickListener());
         Epitech.getSusiesFor(new SimpleDateFormat("yyyy-MM-dd").format(now.getTime()),
                 new SimpleDateFormat("yyyy-MM-dd").format(nextWeek.getTime()), new EpitechApiCallback() {
                     @Override
                     public void callBack(EpitechItem obj) {
-                        SusiePlanning susiePlanning = (SusiePlanning) obj;
-                        SusieListAdapter adapter = new SusieListAdapter(context, susiePlanning.items);
-                        susieList.setAdapter(adapter);
-                        showProgress(false);
+                        try {
+                            SusiePlanning susiePlanning = (SusiePlanning) obj;
+                            adapter = new SusieListAdapter(context, susiePlanning.items);
+                            susieList.setAdapter(adapter);
+                            showProgress(false);
+                        } catch (Exception e) {
+                            showProgress(false);
+                        }
                     }
                 });
         return rootView;
+    }
+
+    private class ItemClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView parent, View view, int position, long id) {
+            SusieInfoFragment susieInfoFragment = new SusieInfoFragment();
+            susieInfoFragment.setSusie((SusiePlanning.SusiePlanningItem)adapter.getItem(position));
+            FragmentManager frgManager = ((FragmentActivity)context).getSupportFragmentManager();
+            frgManager.beginTransaction().replace(R.id.content_frame, susieInfoFragment).addToBackStack("tag").commit();
+        }
     }
 
     /**

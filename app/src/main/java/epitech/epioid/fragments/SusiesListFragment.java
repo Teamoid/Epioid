@@ -4,13 +4,11 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +18,6 @@ import android.widget.ProgressBar;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.List;
 
 import epitech.epioid.API.Epitech;
 import epitech.epioid.API.EpitechApiCallback;
@@ -28,11 +25,12 @@ import epitech.epioid.API.Items.EpitechItem;
 import epitech.epioid.API.Items.SusiePlanning;
 import epitech.epioid.R;
 import epitech.epioid.adapters.SusieListAdapter;
+import epitech.epioid.interfaces.IEpiFragment;
 
 /**
  * Created by Ganitzsh on 18/01/2015.
  */
-public class SusiesListFragment extends Fragment {
+public class SusiesListFragment extends Fragment implements IEpiFragment {
 
     private ListView susieList;
     private SusieListAdapter adapter;
@@ -68,19 +66,20 @@ public class SusiesListFragment extends Fragment {
         return rootView;
     }
 
+    public void refresh() {
+
+    }
+
     private class ItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView parent, View view, int position, long id) {
             SusieInfoFragment susieInfoFragment = new SusieInfoFragment();
-            susieInfoFragment.setSusie((SusiePlanning.SusiePlanningItem)adapter.getItem(position));
-            FragmentManager frgManager = ((FragmentActivity)context).getSupportFragmentManager();
-            frgManager.beginTransaction().replace(R.id.content_frame, susieInfoFragment).addToBackStack("tag").commit();
+            susieInfoFragment.setSusie((SusiePlanning.SusiePlanningItem) adapter.getItem(position));
+            FragmentManager frgManager = ((FragmentActivity) context).getSupportFragmentManager();
+            frgManager.beginTransaction().replace(R.id.content_frame, susieInfoFragment).addToBackStack(null).commit();
         }
     }
 
-    /**
-     * Shows the progress UI and hides the login form.
-     */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     public void showProgress(final boolean show) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {

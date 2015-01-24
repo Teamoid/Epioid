@@ -16,7 +16,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,17 +34,15 @@ public class HomeFragment extends Fragment implements IEpiFragment {
     private Context mContext;
     private Information information = new Information();
 
-    private TextView    tvLogin;
-    private TextView    tvFullname;
-    private TextView    tvGpa;
-    private TextView    tvSemester;
-    private TextView    tvCredit;
-    private TextView    tvPromo;
-    private TextView    tvHistory;
-    private ImageView   ivPhoto;
+    private TextView tvLogin;
+    private TextView tvFullName;
+    private TextView tvSemester;
+    private TextView tvPromo;
+    private TextView tvHistory;
+    private ImageView ivPhoto;
 
-    private LinearLayout    llInnerLayout;
-    private ProgressBar     pbProgressBar;
+    private LinearLayout llInnerLayout;
+    private ProgressBar pbProgressBar;
 
     public HomeFragment() {
         super();
@@ -58,11 +55,16 @@ public class HomeFragment extends Fragment implements IEpiFragment {
         tvLogin = (TextView) rootView.findViewById(R.id.home_view_login);
         ivPhoto = (ImageView) rootView.findViewById(R.id.home_view_student_photo);
         tvSemester = (TextView) rootView.findViewById(R.id.home_view_student_full_semester);
-        tvFullname = (TextView) rootView.findViewById(R.id.home_view_student_full_name);
+        tvFullName = (TextView) rootView.findViewById(R.id.home_view_student_full_name);
         tvPromo = (TextView) rootView.findViewById(R.id.home_view_student_promo);
         tvHistory = (TextView) rootView.findViewById(R.id.home_view_history);
         llInnerLayout = (LinearLayout) rootView.findViewById(R.id.home_view_inner_layout);
         pbProgressBar = (ProgressBar) rootView.findViewById(R.id.home_view_progress);
+        setStuff();
+        return rootView;
+    }
+
+    private void setStuff() {
         showProgress(true);
         Epitech.getInfos(new EpitechApiCallback() {
             @Override
@@ -71,7 +73,7 @@ public class HomeFragment extends Fragment implements IEpiFragment {
                     information = (Information) obj;
                     tvPromo.setText(information.infos.promo);
                     tvLogin.setText(information.infos.login);
-                    tvFullname.setText(information.infos.firstname + " " + information.infos.lastname);
+                    tvFullName.setText(information.infos.firstname + " " + information.infos.lastname);
                     tvSemester.setText(information.infos.semester);
                     tvHistory.setText(Html.fromHtml(information.history.get(0).title.replaceFirst("=\"/", "=\"https://intra.epitech.eu/")));
                     tvHistory.setMovementMethod(LinkMovementMethod.getInstance());
@@ -82,18 +84,13 @@ public class HomeFragment extends Fragment implements IEpiFragment {
                 }
             }
         });
-        return rootView;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("TEST", "Testing da resume");
     }
 
-    /**
-     * Shows the progress UI and hides the login form.
-     */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     public void showProgress(final boolean show) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
@@ -122,6 +119,6 @@ public class HomeFragment extends Fragment implements IEpiFragment {
 
     @Override
     public void refresh() {
-
+        setStuff();
     }
 }

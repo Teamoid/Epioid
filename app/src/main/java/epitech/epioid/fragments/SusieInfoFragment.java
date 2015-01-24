@@ -45,7 +45,8 @@ public class SusieInfoFragment extends Fragment {
         Date begin = null;
         Date end = null;
         SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy à HH:mm");;
+        SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy à HH:mm");
+        ;
 
         try {
             begin = input.parse(susie.start);
@@ -83,8 +84,7 @@ public class SusieInfoFragment extends Fragment {
                 }
 
             });
-        }
-        else {
+        } else {
             registered.setText(getActivity().getResources().getString(R.string.default_susie_registered));
             registerButton.setText("REGISTER");
             registerButton.setOnClickListener(new View.OnClickListener() {

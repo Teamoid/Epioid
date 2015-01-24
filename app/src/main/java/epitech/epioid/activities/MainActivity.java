@@ -6,11 +6,11 @@ import android.annotation.TargetApi;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -25,14 +25,13 @@ import java.util.List;
 
 import epitech.epioid.R;
 import epitech.epioid.adapters.NavigationDrawerListAdapter;
+import epitech.epioid.fragments.ActivitiesToComeFragment;
 import epitech.epioid.fragments.HomeFragment;
 import epitech.epioid.fragments.SusiesListFragment;
 import epitech.epioid.interfaces.IEpiFragment;
 import epitech.epioid.model.NvDrawerItem;
 
 public class MainActivity extends ActionBarActivity {
-
-    private HomeFragment            mHomeFragment;
 
     private DrawerLayout            mDrawerLayout;
     private ListView                mDrawerListView;
@@ -44,6 +43,8 @@ public class MainActivity extends ActionBarActivity {
 
     private IEpiFragment            mCurrentFragment;
 
+    private String                  mTitle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +55,8 @@ public class MainActivity extends ActionBarActivity {
 
         mDrawerItemList = new ArrayList<>();
         mDrawerItemList.add(new NvDrawerItem(R.drawable.ic_action_person, "Accueil", new HomeFragment()));
-        mDrawerItemList.add(new NvDrawerItem(R.drawable.ic_action_new_event, "Susies", new SusiesListFragment()));
+        mDrawerItemList.add(new NvDrawerItem(R.drawable.ic_action_group, "Susies", new SusiesListFragment()));
+        mDrawerItemList.add(new NvDrawerItem(R.drawable.ic_action_event, "Planning", new ActivitiesToComeFragment()));
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerListView = (ListView) findViewById(R.id.left_drawer);
@@ -69,14 +71,14 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
-                getSupportActionBar().setTitle("It's closed");
+                getSupportActionBar().setTitle(mTitle);
                 supportInvalidateOptionsMenu();
             }
 
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                getSupportActionBar().setTitle("It's opened");
+                getSupportActionBar().setTitle("Menu");
                 supportInvalidateOptionsMenu();
             }
         };
@@ -84,10 +86,12 @@ public class MainActivity extends ActionBarActivity {
         mDrawerListView.setOnItemClickListener(new DrawerItemClickListener());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        mHomeFragment = new HomeFragment();
+        IEpiFragment homeFragment = new HomeFragment();
+        mCurrentFragment = homeFragment;
         showProgress(true);
         FragmentManager frgManager = getSupportFragmentManager();
-        frgManager.beginTransaction().replace(R.id.content_frame, mHomeFragment).commit();
+        frgManager.beginTransaction().replace(R.id.content_frame, (Fragment) homeFragment).commit();
+        getSupportActionBar().setTitle(mDrawerItemList.get(0).getmLabel());
         showProgress(false);
     }
 
@@ -101,8 +105,10 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void selectItem(int position) {
+        mCurrentFragment = mDrawerItemList.get(position).getmFragment();
         FragmentManager frgManager = getSupportFragmentManager();
-        frgManager.beginTransaction().replace(R.id.content_frame, mDrawerItemList.get(position).getmFragment()).commit();
+        frgManager.beginTransaction().replace(R.id.content_frame, (Fragment) mDrawerItemList.get(position).getmFragment()).commit();
+        mTitle = mDrawerItemList.get(position).getmLabel();
         mDrawerLayout.closeDrawers();
     }
 
@@ -138,16 +144,13 @@ public class MainActivity extends ActionBarActivity {
         }
         switch (item.getItemId()) {
             case R.id.action_refresh:
-                Log.d("ActionBar", "Refresh clicked!");
+                mCurrentFragment.refresh();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    /**
-     * Shows the progress UI and hides the login form.
-     */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     public void showProgress(final boolean show) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {

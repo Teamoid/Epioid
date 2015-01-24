@@ -1,16 +1,15 @@
 package epitech.epioid.model;
-
-import android.support.v4.app.Fragment;
+import epitech.epioid.interfaces.IEpiFragment;
 
 /**
  * Created by Ganitzsh on 22/01/2015.
  */
 public class NvDrawerItem {
-    private int         mIcon;
-    private String      mLabel;
-    private Fragment    mFragment;
+    private int             mIcon;
+    private String          mLabel;
+    private IEpiFragment    mFragment;
 
-    public NvDrawerItem(int icon, String label, Fragment fragment) {
+    public NvDrawerItem(int icon, String label, IEpiFragment fragment) {
         mIcon = icon;
         mLabel = label;
         mFragment = fragment;
@@ -32,11 +31,11 @@ public class NvDrawerItem {
         this.mLabel = mLabel;
     }
 
-    public Fragment getmFragment() {
+    public IEpiFragment getmFragment() {
         return mFragment;
     }
 
-    public void setmFragment(Fragment mFragment) {
+    public void setmFragment(IEpiFragment mFragment) {
         this.mFragment = mFragment;
     }
 }

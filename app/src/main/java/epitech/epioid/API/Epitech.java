@@ -51,17 +51,29 @@ public class Epitech {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response)
             {
-                callback.callBack(Epitech.parseJSON(response, klass));
+                try {
+                    callback.callBack(Epitech.parseJSON(response, klass));
+                } catch (Exception e) {
+                    Log.e(TAG, e.toString(), e);
+                }
             }
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                callback.callBack(null);
+                try {
+                    callback.callBack(null);
+                } catch (Exception e) {
+                    Log.e(TAG, e.toString(), e);
+                }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                callback.callBack(null);
+                try {
+                    callback.callBack(null);
+                } catch (Exception e) {
+                    Log.e(TAG, e.toString(), e);
+                }
             }
         });
     }
@@ -70,7 +82,11 @@ public class Epitech {
         return (new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                callback.callBack(null);
+                try {
+                    callback.callBack(null);
+                } catch (Exception e) {
+                    Log.e(TAG, e.toString(), e);
+                }
             }
 
             @Override
@@ -88,13 +104,21 @@ public class Epitech {
                     }
                     callback.callBack(ec);
                 } catch (Exception e) {
-                    callback.callBack(null);
+                    try {
+                        callback.callBack(null);
+                    } catch (Exception ex) {
+                        Log.e(TAG, ex.toString(), ex);
+                    }
                 }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                callback.callBack(null);
+                try {
+                    callback.callBack(null);
+                } catch (Exception e) {
+                    Log.e(TAG, e.toString(), e);
+                }
             }
         });
     }
@@ -131,9 +155,9 @@ public class Epitech {
         SusieHelper.getSusieById(id, callback);
     }
 
-    //TODO not implemented
-    public static void subscribeToSusie(String id, EpitechApiCallback callback) {
-        SusieHelper.subscribeToSusie(id, callback);
+    //TODO not tested
+    public static void subscribeToSusie(String id, String calendar_id, EpitechApiCallback callback) {
+        SusieHelper.subscribeToSusie(id, calendar_id, callback);
     }
 
     //TODO not implemented

@@ -26,6 +26,7 @@ import java.util.List;
 import epitech.epioid.R;
 import epitech.epioid.adapters.NavigationDrawerListAdapter;
 import epitech.epioid.fragments.ActivitiesToComeFragment;
+import epitech.epioid.fragments.CalendarFragment;
 import epitech.epioid.fragments.HomeFragment;
 import epitech.epioid.fragments.SusiesListFragment;
 import epitech.epioid.interfaces.IEpiFragment;
@@ -56,7 +57,7 @@ public class MainActivity extends ActionBarActivity {
         mDrawerItemList = new ArrayList<>();
         mDrawerItemList.add(new NvDrawerItem(R.drawable.ic_action_person, "Accueil", new HomeFragment()));
         mDrawerItemList.add(new NvDrawerItem(R.drawable.ic_action_group, "Susies", new SusiesListFragment()));
-        mDrawerItemList.add(new NvDrawerItem(R.drawable.ic_action_event, "Planning", new ActivitiesToComeFragment()));
+        mDrawerItemList.add(new NvDrawerItem(R.drawable.ic_action_event, "Planning", new CalendarFragment()));
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerListView = (ListView) findViewById(R.id.left_drawer);

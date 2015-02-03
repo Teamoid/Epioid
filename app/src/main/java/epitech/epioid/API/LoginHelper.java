@@ -9,6 +9,8 @@ import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URLEncoder;
+
 /**
  * Created by michelantoine on 14/01/15.
  */
@@ -19,6 +21,8 @@ class LoginHelper {
         RequestParams requestParams = new RequestParams();
         requestParams.put("login", login);
         requestParams.put("password", password);
+
+        Epitech.client.setTimeout(20000);
 
         Epitech.client.post(Epitech.URL + "/login", requestParams, new JsonHttpResponseHandler() {
             @Override

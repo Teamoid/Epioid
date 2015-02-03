@@ -47,7 +47,7 @@ public class Planning extends EpitechContainer {
         public String past;
         public String module_available;
 
-        private static class Room {
+        public static class Room {
             public String type;
             public String seats;
             public String code;

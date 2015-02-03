@@ -26,6 +26,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 /**
  * Created by Ganitzsh on 18/01/2015.
  */
@@ -40,6 +42,7 @@ public class HomeFragment extends Fragment implements IEpiFragment {
     private TextView tvPromo;
     private TextView tvHistory;
     private ImageView ivPhoto;
+    private TextView logTime;
 
     private LinearLayout llInnerLayout;
     private ProgressBar pbProgressBar;
@@ -60,6 +63,7 @@ public class HomeFragment extends Fragment implements IEpiFragment {
         tvHistory = (TextView) rootView.findViewById(R.id.home_view_history);
         llInnerLayout = (LinearLayout) rootView.findViewById(R.id.home_view_inner_layout);
         pbProgressBar = (ProgressBar) rootView.findViewById(R.id.home_view_progress);
+        logTime = (TextView) rootView.findViewById(R.id.home_view_student_log);
         setStuff();
         return rootView;
     }
@@ -77,6 +81,7 @@ public class HomeFragment extends Fragment implements IEpiFragment {
                     tvSemester.setText(information.infos.semester);
                     tvHistory.setText(Html.fromHtml(information.history.get(0).title.replaceFirst("=\"/", "=\"https://intra.epitech.eu/")));
                     tvHistory.setMovementMethod(LinkMovementMethod.getInstance());
+                    logTime.setText(information.current.active_log + "h");
                     Picasso.with(mContext).load("https://cdn.local.epitech.eu/userprofil/profilview/" + information.infos.login + ".jpg").into(ivPhoto);
                     showProgress(false);
                 } catch (Exception e) {

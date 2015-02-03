@@ -125,6 +125,28 @@
                         android:text="@string/default_semester"
                         android:layout_column="1" />
                 </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Log actif"
+                        android:id="@+id/textView6"
+                        android:layout_column="0"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/home_view_student_log"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/default_semester"
+                        android:layout_column="1" />
+
+                    </TableRow>
             </TableLayout>
         </LinearLayout>
 

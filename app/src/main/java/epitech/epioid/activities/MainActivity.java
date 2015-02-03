@@ -23,6 +23,7 @@ import android.widget.ProgressBar;
 import java.util.ArrayList;
 import java.util.List;
 
+import epitech.epioid.API.Epitech;
 import epitech.epioid.R;
 import epitech.epioid.adapters.NavigationDrawerListAdapter;
 import epitech.epioid.fragments.ActivitiesToComeFragment;
@@ -106,6 +107,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void selectItem(int position) {
+        Epitech.client.cancelRequests(this, false);
         mCurrentFragment = mDrawerItemList.get(position).getmFragment();
         FragmentManager frgManager = getSupportFragmentManager();
         frgManager.beginTransaction().replace(R.id.content_frame, (Fragment) mDrawerItemList.get(position).getmFragment()).commit();

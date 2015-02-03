@@ -31,7 +31,7 @@ public class Epitech {
         Epitech.token = token;
     }
 
-    static AsyncHttpClient client = new AsyncHttpClient();
+    public static AsyncHttpClient client = new AsyncHttpClient();
     static ObjectMapper mapper = new ObjectMapper();
 
     static EpitechItem parseJSON(JSONObject obj, Class toGet) {

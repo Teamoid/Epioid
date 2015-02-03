@@ -27,15 +27,16 @@ public class SusieHelper {
     }
 
     public static void getSusieById(String id, final EpitechApiCallback callback) {
-        RequestParams requestParams = new RequestParams();
-        requestParams.put("token", Epitech.getToken());
+        RequestParams requestParams = Epitech.getBaseRequestParams();
         requestParams.put("id", id);
 
         Epitech.client.get(Epitech.URL + "/susie", requestParams, Epitech.getHandler(Susie.class, callback));
     }
 
-    public static void subscribeToSusie(String id, final EpitechApiCallback callback) {
-
+    public static void subscribeToSusie(String id, String calendar_id, final EpitechApiCallback callback) {
+        RequestParams requestParams = Epitech.getBaseRequestParams();
+        requestParams.put("id", id);
+        requestParams.put("calendar_id", calendar_id);
     }
 
     public static void unsubscribeToSuse(String id, final EpitechApiCallback callback) {

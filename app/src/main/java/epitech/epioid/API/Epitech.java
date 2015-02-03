@@ -131,9 +131,9 @@ public class Epitech {
         SusieHelper.getSusieById(id, callback);
     }
 
-    //TODO not implemented
-    public static void subscribeToSusie(String id, EpitechApiCallback callback) {
-        SusieHelper.subscribeToSusie(id, callback);
+    //TODO not tested
+    public static void subscribeToSusie(String id, String calendar_id, EpitechApiCallback callback) {
+        SusieHelper.subscribeToSusie(id, calendar_id, callback);
     }
 
     //TODO not implemented
